@@ -1,0 +1,19 @@
+name: Docker image CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  push_to_registries:
+    name: Push docker image to multiple registries 
+    runs-on: ubuntu-latest
+    steps:
+	  - name: Check out the repo	
+        uses: actions/checkout@v2      
+      - name: Run a one-line script
+	    uses: VaultVulp/gp-docker-action@1.1.7
+		with 
+		  github-token: ${{ secrets.TOKEN}}
+		  image-name: myjavaapp
+		  image-tag: v1
